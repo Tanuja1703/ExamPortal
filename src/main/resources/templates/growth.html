@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Career & Skill Growth — Student Guides</title>
+  <meta name="description" content="Practical career guides for students: resumes, certifications, interview prep, learning strategies and motivation." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#fbfdff;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent1:#7c5cff;
+      --accent2:#4ecdc4;
+      --shadow: 0 10px 30px rgba(16,24,40,0.06);
+      --radius:14px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color:#0f1724;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:linear-gradient(180deg,#f8fbff 0%, #eef6ff 100%);padding:36px;display:flex;justify-content:center}
+    .wrap{width:100%;max-width:1100px}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:60px;height:60px;border-radius:12px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:20px;box-shadow:var(--shadow)}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:0;color:var(--muted);font-size:13px}
+
+    nav{display:flex;gap:10px;align-items:center}
+    .btn{padding:10px 14px;border-radius:10px;border:1px solid rgba(15,23,36,0.06);background:transparent;cursor:pointer}
+    .cta{background:linear-gradient(90deg,var(--accent1),var(--accent2));border:none;color:white;padding:10px 14px;border-radius:12px;cursor:pointer}
+
+    .marquee-wrap{margin:18px 0;padding:12px;border-radius:12px;background:linear-gradient(180deg,rgba(124,92,255,0.06), rgba(78,205,196,0.03));display:flex;align-items:center;gap:12px}
+    .marquee{overflow:hidden;white-space:nowrap}
+    .marquee span{display:inline-block;padding-right:40px;font-weight:600;color:#082643}
+
+    .grid{display:grid;grid-template-columns:2fr 380px;gap:18px}
+    .main{display:flex;flex-direction:column;gap:16px}
+
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:var(--shadow);border:1px solid rgba(15,23,36,0.04);transition:transform .18s ease}
+    .card:hover{transform:translateY(-6px)}
+    .card h3{margin:0 0 8px 0}
+    .meta{color:var(--muted);font-size:13px;margin-bottom:10px}
+    .excerpt{color:#0f1724;font-size:14px;line-height:1.45}
+    .read{margin-top:12px;display:inline-block;padding:8px 12px;border-radius:8px;border:1px solid rgba(15,23,36,0.04);background:transparent;cursor:pointer}
+
+    .sidebar{position:sticky;top:28px;background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow);border:1px solid rgba(15,23,36,0.04)}
+    .subscribe input{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(15,23,36,0.06);margin-bottom:8px}
+    .subscribe button{width:100%;padding:10px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;font-weight:700}
+
+    .tips{margin-top:12px;padding:12px;background:linear-gradient(180deg,#fff,#fbfdff);border-radius:10px;border:1px dashed rgba(15,23,36,0.04)}
+
+    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
+
+    @media(max-width:980px){.grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}}
+
+    /* small utilities */
+    .small{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">CS+</div>
+        <div>
+          <h1>Career & Skill Growth</h1>
+          <p class="lead">Practical, student-ready guides: resumes, certs, interview prep & learning habits</p>
+        </div>
+      </div>
+      <nav>
+        <button class="btn">Explore</button>
+        <button class="btn">Resources</button>
+        <button class="cta" onclick="document.getElementById('subscribe-box').scrollIntoView({behavior:'smooth'})">Join Newsletter</button>
+      </nav>
+    </header>
+
+    <div class="marquee-wrap" aria-hidden>
+      <strong style="color:#082643">Latest tips:</strong>
+      <div class="marquee" id="marquee">
+        <span>📄 Resume Tip — Keep it to 1 page and list projects first;</span>
+        <span>🎓 Certs — Cloud & Security are hot in 2025;</span>
+        <span>🧠 Interview — Use STAR for behavioral answers;</span>
+        <span>⏱️ Study — Try Pomodoro, 25/5 wins;</span>
+        <span>🔥 Motivation — Build something small every week;</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <main class="main">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h2 style="margin:0">Featured Guides</h2>
+          <div class="small">5 practical articles • concise reads</div>
+        </div>
+
+        <section class="cards" id="cards">
+
+          <article class="card" data-title="How to Build a Perfect Resume as a Student">
+            <h3>How to Build a Perfect Resume as a Student</h3>
+            <div class="meta">Career • 6 min read</div>
+            <p class="excerpt">One-page resume template, what to include (projects, skills, achievements) and action verbs that stand out.</p>
+            <button class="read" onclick="openArticle(this)">Read →</button>
+          </article>
+
+          <article class="card" data-title="Top Certifications to Boost Your Tech Career">
+            <h3>Top Certifications to Boost Your Tech Career</h3>
+            <div class="meta">Certifications • 5 min read</div>
+            <p class="excerpt">Recommended certs for beginners: Google IT, AWS Cloud, Azure Fundamentals, CCNA, and practical tips to prepare.</p>
+            <button class="read" onclick="openArticle(this)">Read →</button>
+          </article>
+
+          <article class="card" data-title="How to Prepare for Tech Interviews">
+            <h3>How to Prepare for Tech Interviews</h3>
+            <div class="meta">Interviews • 7 min read</div>
+            <p class="excerpt">A study plan for coding, system design basics, behavioral prep and mock interview strategies to land offers.</p>
+            <button class="read" onclick="openArticle(this)">Read →</button>
+          </article>
+
+          <article class="card" data-title="Best Online Learning Strategies to Study Smarter">
+            <h3>Best Online Learning Strategies to Study Smarter</h3>
+            <div class="meta">Learning • 6 min read</div>
+            <p class="excerpt">Pomodoro, spaced repetition, active recall, and building small projects to cement learning fast.</p>
+            <button class="read" onclick="openArticle(this)">Read →</button>
+          </article>
+
+          <article class="card" data-title="How to Stay Motivated While Learning Tech">
+            <h3>How to Stay Motivated While Learning Tech</h3>
+            <div class="meta">Mindset • 5 min read</div>
+            <p class="excerpt">Practical ways to maintain momentum: accountability, mini-projects, community and tracking progress.</p>
+            <button class="read" onclick="openArticle(this)">Read →</button>
+          </article>
+
+        </section>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+          <button class="cta" onclick="openAll()">Explore All Guides</button>
+          <button class="btn" onclick="filterCards('resume')">Quick Resume Tips</button>
+        </div>
+
+        <footer style="margin-top:18px;color:var(--muted);font-size:13px">Want full article drafts? Ask and I’ll write each guide with headings, examples and SEO meta.</footer>
+      </main>
+
+      <aside class="sidebar">
+        <div class="subscribe" id="subscribe-box">
+          <h4 style="margin:0 0 8px 0">Subscribe</h4>
+          <p class="small" style="margin:0 0 10px 0">Get weekly career tips and project ideas.</p>
+          <input placeholder="you@example.com" />
+          <button onclick="alert('Subscribed — demo only')">Join Newsletter</button>
+        </div>
+
+        <div class="tips">
+          <strong>Quick checklist</strong>
+          <ul style="margin:8px 0 0 18px;color:var(--muted)">
+            <li>Resume: projects first, keep it one page</li>
+            <li>Interview: practice problems daily</li>
+            <li>Learning: build mini-projects weekly</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:12px">
+          <h4 style="margin:0 0 8px 0">Resources</h4>
+          <div class="small">
+            • Free project ideas<br>
+            • Mock interview platforms<br>
+            • Certification prep links
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer>Built for students • Practical career guides — © EduExam+</footer>
+  </div>
+
+  <script>
+    // marquee animation
+    (function marquee(){
+      const m = document.getElementById('marquee');
+      let t = 0;
+      function step(){
+        t -= 1;
+        if(Math.abs(t) > m.scrollWidth/2) t = 0;
+        m.style.transform = 'translateX('+t+'px)';
+        requestAnimationFrame(step);
+      }
+      // duplicate content for smooth loop
+      m.innerHTML = m.innerHTML + m.innerHTML;
+      requestAnimationFrame(step);
+    })();
+
+    function openArticle(btn){
+      const card = btn.closest('.card');
+      const title = card.querySelector('h3').innerText;
+      const excerpt = card.querySelector('.excerpt').innerText;
+      const modal = document.createElement('div');
+      modal.style = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(15,23,36,0.5);z-index:9999';
+      modal.innerHTML = `\n        <article style="width:90%;max-width:860px;background:var(--card);padding:22px;border-radius:12px;box-shadow:var(--shadow)">\n          <h2 style=\"margin-top:0\">${title}</h2>\n          <p style=\"color:var(--muted)\">${excerpt}</p>\n          <div style=\"margin-top:16px;display:flex;gap:8px\">\n            <button onclick=\"alert(\'Open full article — demo only\')\" style=\"padding:10px 14px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;font-weight:700\">Read Full</button>\n            <button onclick=\"document.body.removeChild(this.closest('div'))\" style=\"padding:10px 14px;border-radius:10px;border:1px solid rgba(15,23,36,0.06);background:transparent\">Close</button>\n          </div>\n        </article>`;
+      document.body.appendChild(modal);
+    }
+
+    function openAll(){alert('Navigate to full article index — demo only')}
+
+    function filterCards(q){
+      q = q || document.getElementById('q')?.value || '';
+      q = q.toLowerCase();
+      document.querySelectorAll('#cards .card').forEach(c=>{
+        const t = c.getAttribute('data-title').toLowerCase();
+        c.style.display = (!q || t.includes(q))? 'block':'none';
+      })
+    }
+  </script>
+</body>
+</html>

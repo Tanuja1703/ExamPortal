@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Courses</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #eef1f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            width: 260px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+            transition: .2s;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #0A66C2;
+        }
+
+        .view-btn {
+            display: block;
+            margin-top: 10px;
+            padding: 8px;
+            background: #0A66C2;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<h1>My Enrolled Courses</h1>
+
+<div class="container">
+
+    <!-- Loop all enrolled courses -->
+    <div class="card" th:each="c : ${myCourses}">
+
+        <img th:src="${c.thumb}" alt="Course Image">
+
+        <h3 th:text="${c.title}"></h3>
+
+        <p th:text="'Duration: ' + ${c.duration}"></p>
+
+        <p class="price">₹<span th:text="${c.price}"></span></p>
+
+        <!-- View Course Details Button -->
+        <a class="view-btn"
+           th:href="@{/course/details/{id}(id=${c.id})}">
+            View Details
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

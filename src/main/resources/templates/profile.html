@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Profile - EduExam</title>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: all 0.3s ease; }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #6c63ff, #8f94fb);
+    }
+
+    .profile-card {
+        position: relative;
+        padding: 35px 25px 25px;
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.95);
+        text-align: center;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        width: 420px;
+        max-width: 95%;
+        overflow: hidden;
+        animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px);}
+        to { opacity: 1; transform: translateY(0);}
+    }
+
+    .profile-card img {
+        width: 160px; 
+        height: 160px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 20px;
+        border: 5px solid #fff;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .profile-card img:hover {
+        transform: scale(1.08) rotate(2deg);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+    }
+
+    .profile-card h2 {
+        margin-bottom: 10px;
+        color: #333;
+        font-weight: 700;
+        font-size: 24px;
+    }
+
+    .profile-card p {
+        margin: 6px 0;
+        color: #555;
+        font-size: 15px;
+    }
+
+    .profile-card a, .profile-card button {
+        display: inline-block;
+        margin: 12px 5px;
+        padding: 10px 22px;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        font-weight: 500;
+        text-decoration: none;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+    }
+
+    .edit-btn {
+        background: #6c63ff;
+        color: white;
+    }
+
+    .edit-btn:hover {
+        background: #574fd6;
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .logout-btn {
+        background: #dc3545;
+        color: white;
+        width: 160px;
+    }
+
+    .logout-btn:hover {
+        background: #b02a37;
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    @media (max-width: 500px) {
+        .profile-card { padding: 30px 15px 20px; }
+        .profile-card img { width: 140px; height: 140px; }
+    }
+
+
+   
+</style>
+</head>
+<body>
+    <!-- <header>
+    <h1>EduExam+</h1>
+    <nav>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/about}">About</a>
+        Practice Dropdown -->
+        <!-- <div class="dropdown">
+            <button class="dropbtn"><a th:href="@{/practice}">Practice</a> </button>
+            <div class="dropdown-content">
+                <a th:href="@{/tutorials}">Tutorials</a>
+                <a th:href="@{/articles}">Articles</a>
+                <a th:href="@{/coding-problems}">Coding Problems</a>
+                <a th:href="@{/quizzes}">Quizzes</a>
+                <a th:href="@{/learning-videos}">Learning Videos</a>
+                <a th:href="@{/cheat-sheets}">Cheat Sheets</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" style="background: none;
+    border: none;
+    font-size: 16px;
+    padding: 5px 5px;"><a th:href="@{/courses}">Courses</a> </button>
+            <div class="dropdown-content" style=" 
+    padding: 12px 25px;
+    /* text-decoration: none; */
+    color: #333;
+    font-size: 15px;">
+                <a th:href="@{/tutorials}">Web & Software Development</a><br>
+                <a th:href="@{/articles}">Data & AI</a><br>
+                <a th:href="@{/coding-problems}">Programming Languages & CS Fundamentals</a><br>
+                <a th:href="@{/quizzes}">DevOps / Cloud / Infra</a>
+                <a th:href="@{/learning-videos}">Cybersecurity & QA</a>
+                <a th:href="@{/cheat-sheets}">Tools / Productivity / Business Skills</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">More </button>
+            <div class="dropdown-content">
+                <a th:href="@{/practice}">Blog</a>
+                <a th:href="@{/tutorials}">In News</a>
+            </div>
+        </div>
+        <a th:href="@{/login}">Login</a>
+        <a th:href="@{/register}">Register</a>
+        <a th:href="@{/profile}">Profile</a>
+    </nav>
+</header> -->
+
+<br> 
+<div class="profile-card">
+
+    <!-- Profile Image -->
+    <!-- <img th:src="${user.photo != null} ? @{/uploads/{photo}(photo=${user.photo})} : @{/images/default.png}" 
+         alt="Profile Photo"> -->
+         <img th:if="${user.photo != null}"
+     th:src="@{/uploads/{img}(img=${user.photo})}"
+     alt="Profile Photo">
+
+<img th:if="${user.photo == null}"
+     src="/images/default.png"
+     alt="Default Profile">
+
+
+    <h2 th:text="${user.name}">Student Name</h2>
+
+    <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+    <p th:if="${user.age != null}"><strong>Age:</strong> <span th:text="${user.age}"></span></p>
+    <p th:if="${user.qualification != null}"><strong>Qualification:</strong> <span th:text="${user.qualification}"></span></p>
+    <p th:if="${user.city != null}"><strong>City:</strong> <span th:text="${user.city}"></span></p>
+    <p th:if="${user.country != null}"><strong>Country:</strong> <span th:text="${user.country}"></span></p>
+    <p th:if="${user.about != null}"><strong>About:</strong> <span th:text="${user.about}"></span></p>
+
+    <!-- Edit Profile -->
+    <a th:href="@{/edit-profile(email=${user.email})}" class="edit-btn">Edit Profile</a>
+<a th:href="@{/home}" class="edit-btn">Home</a>
+    <!-- Logout -->
+    <form action="/logout" method="post">
+        <button type="submit" class="logout-btn">Logout</button>
+    </form>
+   
+
+</div>
+
+</body>
+</html>

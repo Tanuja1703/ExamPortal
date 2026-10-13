@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduExam+ Home</title>
+<style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    header {
+      background: linear-gradient(90deg, #0052D4, #65C7F7, #9CECFB);
+      padding: 15px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    /* nav a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    nav a:hover {
+      color: #ffe082;
+      transform: scale(1.1);
+    } */
+
+    /* Hero Section */
+    .hero {
+      height: 90vh;
+      background: linear-gradient(rgba(0,0,50,0.6), rgba(0,0,50,0.6)), 
+                  url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1500&q=80') 
+                  center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      text-align: center;
+      animation: fadeIn 2s ease-in;
+    }
+    .hero h2 {
+      font-size: 52px;
+      margin-bottom: 15px;
+      animation: slideDown 1.5s ease-out;
+    }
+    .hero p {
+      font-size: 22px;
+      margin-bottom: 30px;
+      animation: slideUp 1.5s ease-out;
+    }
+    .hero button {
+      padding: 14px 30px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(45deg, #ff9800, #ff5722);
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.4s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .hero button:hover {
+      transform: scale(1.1);
+      background: linear-gradient(45deg, #ff5722, #ff9800);
+    }
+
+    /* Features Section */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 60px;
+      background: #fff;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .card h3 {
+      margin-bottom: 15px;
+      color: #0052D4;
+      font-size: 22px;
+    }
+    .card p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      /* background: linear-gradient(135deg, #1c1c1c, #2c2c2c); */
+      background:#003b92;
+      color: #ddd;
+      padding: 50px 20px 20px;
+      font-size: 14px;
+      margin-top: 50px;
+      position: relative;
+    }
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .footer-section h3, 
+    .footer-section h4 {
+      color: #fff;
+      margin-bottom: 15px;
+    }
+    .footer-section p {
+      line-height: 1.6;
+    }
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-section ul li {
+      margin-bottom: 8px;
+    }
+    .footer-section ul li a {
+      text-decoration: none;
+      color: #ddd;
+      transition: 0.3s;
+    }
+    .footer-section ul li a:hover {
+      color: #ff9800;
+      padding-left: 5px;
+    }
+    .social-icons a {
+      display: inline-block;
+      margin: 5px;
+      transition: transform 0.3s, filter 0.3s;
+    }
+    .social-icons a:hover {
+      transform: scale(1.3);
+      filter: brightness(1.3);
+    }
+    .footer-bottom {
+      border-top: 1px solid #444;
+      text-align: center;
+      padding-top: 15px;
+      margin-top: 30px;
+      font-size: 13px;
+      color: #aaa;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes slideDown {
+      from {transform: translateY(-50px); opacity: 0;}
+      to {transform: translateY(0); opacity: 1;}
+    }
+    @keyframes slideUp {
+      from {transform: translateY(50px); opacity: 0;}
+      to {transform: translateY(0); opacity: 1;}
+    }
+
+
+    .latest-updates {
+    margin: 50px auto;
+    width: 90%;
+    text-align: center;
+}
+
+.latest-updates h2 {
+    font-size: 32px;
+    color: #0d6efd;
+    margin-bottom: 20px;
+}
+
+/* Auto Scrolling News Ticker */
+.update-ticker {
+    width: 100%;
+    overflow: hidden;
+    background: #eef6ff;
+    border-radius: 10px;
+    padding: 8px 0;
+    margin-bottom: 25px;
+    border-left: 6px solid #0d6efd;
+}
+
+.scroll-text {
+    white-space: nowrap;
+    display: inline-block;
+    animation: scroll 22s linear infinite;
+    font-size: 18px;
+    color: #034aa6;
+    font-weight: bold;
+}
+
+@keyframes scroll {
+    from { transform: translateX(100%); }
+    to   { transform: translateX(-100%); }
+}
+
+/* Glass Cards Container */
+.updates-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+/* Glass Update Cards */
+.update-card {
+    width: 300px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    transition: 0.4s ease;
+    position: relative;
+}
+
+/* Hover Animation */
+.update-card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+    border-color: #0d6efd;
+}
+
+/* Category Tags */
+.tag {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 6px 12px;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.tag.urgent { background: #e63946; }
+.tag.exam   { background: #0d6efd; }
+
+.update-card h3 {
+    color: #0d6efd;
+    margin-bottom: 10px;
+}
+
+.update-card p {
+    color: #333;
+    font-size: 15px;
+}
+
+.date {
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #555;
+    font-style: italic;
+}
+
+
+
+
+nav a, .dropbtn {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+nav a:hover, .dropbtn:hover {
+    color: #007bff;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    padding: 10px 15px;
+}
+
+/* Dropdown Content Box */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Reveal On Hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Dropdown Links */
+.dropdown-content a {
+    display: block;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+}
+
+.dropdown-content a:hover {
+    background: #f2f6ff;
+    color: #007bff;
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+  </style>
+</head>
+<body>
+<header>
+    <h1>EduExam+</h1>
+    <nav>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/about}">About</a>
+        <!-- Practice Dropdown -->
+        <div class="dropdown">
+            <button class="dropbtn"><a th:href="@{/practice}">Practice</a> </button>
+            <div class="dropdown-content">
+                <a th:href="@{/practice}">Tutorials</a>
+                <a th:href="@{/practice}">Articles</a>
+                <a th:href="@{/practice}">Coding Problems</a>
+                <a th:href="@{/practice}">Quizzes</a>
+                <a th:href="@{/practice}">Learning Videos</a>
+                <a th:href="@{/practice}">Cheat Sheets</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" style="background: none;
+    border: none;
+    font-size: 16px;
+    padding: 5px 5px;"><a th:href="@{/courses}">Courses</a> </button>
+            <div class="dropdown-content" style=" 
+    padding: 12px 25px;
+    /* text-decoration: none; */
+    color: #333;
+    font-size: 15px;">
+                <a th:href="@{/courses}">Web & Software Development</a><br>
+                <a th:href="@{/courses}">Data & AI</a><br>
+                <a th:href="@{/courses}">Programming Languages & CS Fundamentals</a><br>
+                <a th:href="@{/courses}">DevOps / Cloud / Infra</a>
+                <a th:href="@{/courses}">Cybersecurity & QA</a>
+                <a th:href="@{/courses}">Tools / Productivity / Business Skills</a>
+            </div>
+        </div>
+        <a th:href="@{/login}">Login</a>
+        <a th:href="@{/register}">Register</a>
+        <a th:href="@{/profile}">Profile</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>Smart Learning, Smarter Exams</h2>
+    <p>One-stop solution for Online Exams & Digital Notes</p>
+    <button th:onclick="|window.location='@{/register}'|">Get Started</button>
+</section>
+
+<section class="features">
+    <div class="card"><h3>📘 Online Notes</h3><p>Access subject-wise notes anytime, anywhere with ease.</p></div>
+    <div class="card"><h3>📝 Online Exams</h3><p>Practice & take exams online with instant evaluation.</p></div>
+    <div class="card"><h3>📊 Results</h3><p>Check your progress with auto-generated reports.</p></div>
+    <div class="card"><h3>👤 Profile</h3><p>Personalized dashboard for your exams & notes.</p></div>
+</section>
+
+<section class="latest-updates">
+    <h2>Latest Updates</h2>
+
+    <!-- Auto Scrolling Ticker -->
+    <div class="update-ticker">
+        <div class="scroll-text">
+            🔔 New Exam Timetable Released | 
+            📝 Online Test Portal Maintenance on Sunday | 
+            📢 Results Declared for Semester 1 | 
+            🎓 New Courses Added for 2025 Batch |
+        </div>
+    </div>
+
+    <!-- Glass Cards -->
+    <div class="updates-container">
+        <div class="update-card">
+            <span class="tag urgent">Urgent</span>
+            <h3>Server Maintenance</h3>
+            <p>The system will be down on Sunday 3 PM to 5 PM.</p>
+            <span class="date">Updated: Today</span>
+        </div>
+
+        <div class="update-card">
+            <span class="tag exam">Exam</span>
+            <h3> Exam Schedule</h3>
+            <p>Mid-term exams will begin on 12th December.</p>
+            <span class="date">Updated: Yesterday</span>
+        </div>
+    </div>
+</section>
+
+
+<section class="features">
+    <div class="card"><h3>📚 Study Materials</h3><p>Download all subject notes & PDFs.</p></div>
+    <div class="card"><h3>📝 Mock Tests</h3><p>Full-length practice exams with timer.</p></div>
+    <div class="card"><h3>📊 Progress Report</h3><p>Track performance with smart analytics.</p></div>
+    <div class="card"><h3>🏆 Leaderboard</h3><p>See your ranking among all students.</p></div>
+    <div class="card"><h3>🗓️ Exam Schedule</h3><p>Upcoming exam timetable & alerts.</p></div>
+    <div class="card"><h3>👤 My Profile</h3><p>Update your personal information.</p></div>
+    <div class="card">
+        <h3>📖 Detailed Chapters</h3>
+        <p>All chapters with easy explanation.</p>
+    </div>
+    <div class="card">
+        <h3>📝 Random Quiz</h3>
+        <p>Instant 10-question quiz anytime.</p>
+    </div>
+    <div class="card">
+        <h3>📈 Performance Analytics</h3>
+        <p>Your strong & weak areas analysis.</p>
+    </div>
+    <div class="card">
+        <h3>📚 Previous Year Papers</h3>
+        <p>Practice last years’ exam papers.</p>
+    </div>
+    <div class="card">
+        <h3>🏆 Top Scorer Wall</h3>
+        <p>See the top ranked students.</p>
+    </div>
+    <div class="card">
+        <h3>🗓️ Exam Calendar</h3>
+        <p>Upcoming exams & reminders.</p>
+    </div>
+</section>
+
+<!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <!-- About -->
+      <div class="footer-section">
+        <h3>EduExam+</h3>
+        <p>Smart Online Examination & Notes Portal – your one stop solution for learning & assessment.</p>
+      </div>
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="#">Notes</a></li>
+          <li><a href="#">Results</a></li>
+          <li><a href="#">Profile</a></li>
+        </ul>
+      </div>
+      <!-- Contact -->
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <p>Email: support@eduexam.com</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+      <!-- Social Links -->
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/facebook-new.png"/></a>
+          <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/twitter.png"/></a>
+          <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/linkedin.png"/></a>
+          <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/instagram-new.png"/></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 EduExam+ | Designed with ❤ for Smart Students</p>
+    </div>
+  </footer>
+</body>
+</html>

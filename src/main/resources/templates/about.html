@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - EduExam+</title>
+
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+<style>
+/* ------------------- GLOBAL FONTS ------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#e8f2ff;
+    overflow-x:hidden;
+}
+
+/* ------------------- HEADER ------------------- */
+header{
+    background:linear-gradient(90deg,#0052D4,#65C7F7,#9CECFB);
+    padding:18px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:white;
+    position:sticky;
+    top:0;
+    z-index:20;
+    box-shadow:0 3px 15px rgba(0,0,0,0.2);
+}
+
+header h1{
+    font-size:32px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+nav a{
+    margin:0 15px;
+    color:white;
+    text-decoration:none;
+    font-weight:500;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#ffe082;
+    text-shadow:0 0 8px white;
+    transform:scale(1.1);
+}
+
+/* ------------------- HERO SECTION ------------------- */
+.hero{
+    width:100%;
+    padding:80px 60px;
+    background:linear-gradient(120deg,#0052D4,#65C7F7,#9CECFB);
+    color:white;
+    text-align:center;
+}
+
+.hero h2{
+    font-size:42px;
+    animation:fade 1.4s ease-in-out;
+}
+
+.hero p{
+    margin-top:10px;
+    font-size:18px;
+    opacity:0.9;
+}
+
+/* ------------------- ABOUT SECTION ------------------- */
+.about-container{
+    padding:70px 80px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+}
+
+.about-text{
+    background:rgba(255,255,255,0.8);
+    backdrop-filter:blur(12px);
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.1);
+    animation:slideUp 1s ease-out;
+    border-left:6px solid #0052D4;
+}
+
+.about-text h2{
+    color:#0052D4;
+    font-size:28px;
+    margin-bottom:20px;
+}
+
+.about-text p{
+    color:#333;
+    margin-bottom:15px;
+    line-height:1.7;
+}
+
+.about-img img{
+    width:100%;
+    border-radius:16px;
+    box-shadow:0 10px 35px rgba(0,0,0,0.2);
+    animation:zoomIn 1s ease-out;
+}
+
+/* ------------------- VISION / MISSION ------------------- */
+.vm-section{
+    padding:70px 80px;
+    text-align:center;
+}
+
+.vm-section h2{
+    font-size:32px;
+    color:#0052D4;
+    margin-bottom:35px;
+}
+
+.vm-boxes{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.vm-card{
+    width:330px;
+    padding:30px;
+    border-radius:20px;
+    background:white;
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    transition:0.3s;
+    border-top:6px solid #65C7F7;
+}
+
+.vm-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+}
+
+.vm-card i{
+    font-size:48px;
+    color:#0052D4;
+    margin-bottom:12px;
+}
+
+/* ------------------- WHY CHOOSE US ------------------- */
+.why-section{
+    padding:80px 80px;
+    background:#dcecff;
+}
+
+.why-section h2{
+    text-align:center;
+    font-size:32px;
+    color:#0052D4;
+    margin-bottom:40px;
+}
+
+.why-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.why-card{
+    background:white;
+    padding:28px;
+    border-radius:18px;
+    text-align:center;
+    box-shadow:0 6px 20px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.why-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 12px 30px rgba(0,0,0,0.2);
+}
+
+.why-card i{
+    font-size:45px;
+    color:#0052D4;
+}
+
+.why-card h3{
+    margin-top:12px;
+    color:#0052D4;
+}
+
+.why-card p{
+    margin-top:10px;
+    color:#444;
+}
+
+/* ------------------- STATS ------------------- */
+.stats{
+    background:linear-gradient(90deg,#0052D4,#65C7F7,#9CECFB);
+    padding:60px 80px;
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+    color:white;
+    text-align:center;
+}
+
+.stats div{
+    margin:20px;
+}
+
+.stats h3{
+    font-size:34px;
+    font-weight:700;
+}
+
+/* ------------------- FOOTER ------------------- */
+footer{
+    background:#003b92;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+
+/* Footer */
+    footer {
+      /* background: linear-gradient(135deg, #1c1c1c, #2c2c2c); */
+      background:#003b92;
+      color: #ddd;
+      padding: 50px 20px 20px;
+      font-size: 14px;
+      margin-top: 50px;
+      position: relative;
+    }
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .footer-section h3, 
+    .footer-section h4 {
+      color: #fff;
+      margin-bottom: 15px;
+    }
+    .footer-section p {
+      line-height: 1.6;
+    }
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-section ul li {
+      margin-bottom: 8px;
+    }
+    .footer-section ul li a {
+      text-decoration: none;
+      color: #ddd;
+      transition: 0.3s;
+    }
+    .footer-section ul li a:hover {
+      color: #ff9800;
+      padding-left: 5px;
+    }
+    .social-icons a {
+      display: inline-block;
+      margin: 5px;
+      transition: transform 0.3s, filter 0.3s;
+    }
+    .social-icons a:hover {
+      transform: scale(1.3);
+      filter: brightness(1.3);
+    }
+    .footer-bottom {
+      border-top: 1px solid #444;
+      text-align: center;
+      padding-top: 15px;
+      margin-top: 30px;
+      font-size: 13px;
+      color: #aaa;
+    }
+
+/* ------------------- ANIMATIONS ------------------- */
+@keyframes zoomIn{
+    from{transform:scale(0.9);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+@keyframes slideUp{
+    from{transform:translateY(20px);opacity:0;}
+    to{transform:translateY(0);opacity:1;}
+}
+
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+/* ------------------- RESPONSIVE ------------------- */
+@media(max-width:900px){
+    .about-container{
+        grid-template-columns:1fr;
+    }
+    header{
+        padding:15px 25px;
+    }
+    nav a{margin:0 8px;}
+}
+
+/* ------------------- GLASS CARD SECTION ------------------- */
+.container{
+    padding:70px 80px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.glass-card{
+    background:rgba(255,255,255,0.25);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-radius:18px;
+    padding:28px;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(0,0,0,0.15);
+    border:1px solid rgba(255,255,255,0.35);
+    transition:0.35s;
+    animation:fadeUp 1s ease-out;
+}
+
+/* Hover Effect — Glow + Lift */
+.glass-card:hover{
+    transform:translateY(-10px) scale(1.03);
+    box-shadow:0 18px 40px rgba(0,0,0,0.25);
+    border-color:rgba(255,255,255,0.55);
+}
+
+/* Title */
+.glass-card h3{
+    font-size:20px;
+    color:#0052D4;
+    margin-bottom:10px;
+}
+
+/* Text */
+.glass-card p{
+    color:#333;
+    font-size:14.5px;
+}
+
+/* Intro animation */
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+nav a, .dropbtn {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+nav a:hover, .dropbtn:hover {
+    color: #007bff;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    padding: 10px 15px;
+}
+
+/* Dropdown Content Box */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Reveal On Hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Dropdown Links */
+.dropdown-content a {
+    display: block;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+}
+
+.dropdown-content a:hover {
+    background: #f2f6ff;
+    color: #007bff;
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<header>
+    <h1>EduExam+</h1>
+    <nav>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/about}">About</a>
+        <!-- Practice Dropdown -->
+        <div class="dropdown">
+            <button class="dropbtn"><a th:href="@{/practice}">Practice</a> </button>
+            <div class="dropdown-content">
+                <a th:href="@{/practice}">Tutorials</a>
+                <a th:href="@{/practice}">Articles</a>
+                <a th:href="@{/practice}">Coding Problems</a>
+                <a th:href="@{/practice}">Quizzes</a>
+                <a th:href="@{/practice}">Learning Videos</a>
+                <a th:href="@{/practice}">Cheat Sheets</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" style="background: none;
+    border: none;
+    font-size: 16px;
+    padding: 5px 5px;"><a th:href="@{/courses}">Courses</a> </button>
+            <div class="dropdown-content" style=" 
+    padding: 12px 25px;
+    /* text-decoration: none; */
+    color: #333;
+    font-size: 15px;">
+                <a th:href="@{/courses}">Web & Software Development</a><br>
+                <a th:href="@{/courses}">Data & AI</a><br>
+                <a th:href="@{/courses}">Programming Languages & CS Fundamentals</a><br>
+                <a th:href="@{/courses}">DevOps / Cloud / Infra</a>
+                <a th:href="@{/courses}">Cybersecurity & QA</a>
+                <a th:href="@{/courses}">Tools / Productivity / Business Skills</a>
+            </div>
+        </div>
+        <a th:href="@{/login}">Login</a>
+        <a th:href="@{/register}">Register</a>
+        <a th:href="@{/profile}">Profile</a>
+    </nav>
+</header>
+
+<!-- ABOUT -->
+<section class="about-container">
+    <div class="about-text">
+        <h2>Who We Are?</h2>
+        <p>EduExam+ is a modern digital learning solution offering smart notes, online exams, and personalized analytics.</p>
+        <p>We aim to make learning interactive, fast, and easily accessible for every student.</p>
+        <p>Our platform focuses on simplicity, performance, and innovation.</p>
+    </div>
+
+    <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238" alt="EduExam+">
+    </div>
+</section>
+
+<!-- VISION / MISSION -->
+<section class="vm-section">
+    <h2>Our Vision & Mission</h2>
+
+    <div class="vm-boxes">
+
+        <div class="vm-card">
+            <i class="ri-eye-line"></i>
+            <h3>Our Vision</h3>
+            <p>Transform education with advanced digital tools.</p>
+        </div>
+
+        <div class="vm-card">
+            <i class="ri-flag-line"></i>
+            <h3>Our Mission</h3>
+            <p>Deliver a seamless online exam & learning experience.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+    <h2>Why Choose EduExam+</h2>
+
+    <div class="why-grid">
+
+        <div class="why-card">
+            <i class="ri-book-open-line"></i>
+            <h3>Easy Notes</h3>
+            <p>Organized content for fast learning.</p>
+        </div>
+
+        <div class="why-card">
+            <i class="ri-edit-circle-line"></i>
+            <h3>Online Exams</h3>
+            <p>Instant checked tests.</p>
+        </div>
+
+        <div class="why-card">
+            <i class="ri-line-chart-line"></i>
+            <h3>Performance</h3>
+            <p>Track your progress easily.</p>
+        </div>
+
+        <div class="why-card">
+            <i class="ri-user-smile-line"></i>
+            <h3>User-Friendly</h3>
+            <p>Clean UI for better learning.</p>
+        </div>
+
+        <div class="why-card">
+            <i class="ri-robot-line"></i>
+            <h3>AI Powered Learning</h3>
+            <p>Get smart suggestions based on your study pattern.</p>
+        </div>
+        
+        <div class="why-card">
+            <i class="ri-shield-check-line"></i>
+            <h3>Secure & Reliable</h3>
+            <p>Your data and exams are fully encrypted & protected.</p>
+        </div>
+
+    </div>
+</section>
+<div class="container">
+    <div class="glass-card"><h3>🤖 AI Recommendations</h3><p>Get personalized study suggestions.</p></div>
+    <div class="glass-card"><h3>🎯 Interactive Learning</h3><p>Smart quizzes & flashcards.</p></div>
+    <div class="glass-card"><h3>☁ Secure Cloud Storage</h3><p>Your data safely stored.</p></div>
+    <div class="glass-card"><h3>📞 24×7 Support</h3><p>Instant help anytime.</p></div>
+    <div class="glass-card"><h3>📱 Multi-Device Access</h3><p>Mobile + Tablet + PC.</p></div>
+    <div class="glass-card"><h3>🚀 Lightning Fast</h3><p>Optimized performance.</p></div>
+    <div class="glass-card"><h3>📧 Weekly Emails</h3><p>Progress reports every week.</p></div>
+    <div class="glass-card"><h3>✔ Verified Content</h3><p>Expert-approved notes.</p></div>
+    <div class="glass-card"><h3>🏅 Real-Time Ranking</h3><p>Compete with students.</p></div>
+    <div class="glass-card"><h3>🎖 Badges & Rewards</h3><p>Earn learning achievements.</p></div>
+    <div class="glass-card">
+    <h3>🔔 Smart Notifications</h3>
+    <p>Never miss exams, updates & new notes.</p>
+</div>
+
+<div class="glass-card">
+    <h3>💡 Concept Hints</h3>
+    <p>Auto-generated explanations for tough questions.</p>
+</div>
+
+</div>
+
+<!-- STATS -->
+<section class="stats">
+    <div><h3>8,500+</h3><p>Students</p></div>
+    <div><h3>1,200+</h3><p>Exams</p></div>
+    <div><h3>6,500+</h3><p>Notes</p></div>
+    <div><h3>98%</h3><p>Satisfaction</p></div>
+</section>
+
+<!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <!-- About -->
+      <div class="footer-section">
+        <h3>EduExam+</h3>
+        <p>Smart Online Examination & Notes Portal – your one stop solution for learning & assessment.</p>
+      </div>
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Exams</a></li>
+          <li><a href="#">Notes</a></li>
+          <li><a href="#">Results</a></li>
+          <li><a href="#">Profile</a></li>
+        </ul>
+      </div>
+      <!-- Contact -->
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <p>Email: support@eduexam.com</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+      <!-- Social Links -->
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/facebook-new.png"/></a>
+          <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/twitter.png"/></a>
+          <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/linkedin.png"/></a>
+          <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/instagram-new.png"/></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 EduExam+ | Designed with ❤ for Smart Students</p>
+    </div>
+  </footer>
+
+</body>
+</html>

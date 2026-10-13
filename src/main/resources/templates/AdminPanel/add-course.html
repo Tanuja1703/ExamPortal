@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Course</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 40px; }
+        .container { width: 480px; background: #fff; margin: auto; padding: 25px; border-radius: 14px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        h2 { text-align: center; margin-bottom: 20px; color: #333; font-size: 26px; }
+        label { font-weight: bold; margin-top: 10px; display: block; color: #444; }
+        input, select, textarea { width: 100%; padding: 12px; margin-top: 6px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; transition: 0.2s; }
+        input:focus, select:focus, textarea:focus { border-color: #4a4af4; box-shadow: 0 0 6px rgba(74, 74, 244, 0.3); outline: none; }
+        button { width: 100%; padding: 14px; background: #4a4af4; color: white; font-size: 17px; border: none; border-radius: 8px; cursor: pointer; margin-top: 18px; transition: 0.3s; }
+        button:hover { background: #3c3cd9; }
+        .preview-img { width: 100%; margin-top: 10px; display: none; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
+        .msg { padding: 12px; margin-bottom: 14px; border-radius: 8px; text-align: center; font-weight: bold; }
+        .success { background: #d4ffd9; color: #1b8c2a; }
+        .error { background: #ffdada; color: #c32626; }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Add New Course</h2>
+
+    <div th:if="${param.success}" class="msg success">Course Added Successfully!</div>
+    <div th:if="${param.error}" class="msg error">Something went wrong!</div>
+
+    <form th:action="@{/admin/courses/save}" th:object="${course}" method="post" enctype="multipart/form-data">
+
+        <label>Course Title</label>
+        <input type="text" th:field="*{title}" placeholder="Enter course title" required>
+
+        <label>Category</label>
+        <input type="text" th:field="*{category}" placeholder="e.g. Programming, Design" required>
+
+        <label>Duration</label>
+        <input type="text" th:field="*{duration}" placeholder="e.g. 6 Weeks">
+
+        <label>Level</label>
+        <select th:field="*{level}">
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+        </select>
+
+        <label>Price</label>
+        <input type="text" th:field="*{price}" placeholder="e.g. 999" required>
+
+        <label>Description</label>
+        <textarea th:field="*{description}" placeholder="Enter full course description" rows="4"></textarea>
+
+        <label>Thumbnail Image</label>
+        <input type="file" name="file" accept="image/*" onchange="previewImage(event)">
+
+        <img id="thumbPreview" class="preview-img">
+
+        <button type="submit">Save Course</button>
+
+    </form>
+</div>
+
+<script>
+    function previewImage(event) {
+        const img = document.getElementById("thumbPreview");
+        if(event.target.files.length > 0){
+            img.src = URL.createObjectURL(event.target.files[0]);
+            img.style.display = "block";
+        } else {
+            img.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>

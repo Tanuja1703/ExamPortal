@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="mr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title th:text="${course.title} + ' — EduExam+'">Course</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--accent:#4c7dff;--muted:#6b7280}
+    body{font-family:'Inter',sans-serif;margin:0;background:linear-gradient(180deg,#fbfeff,#eef6ff);padding:22px}
+    .wrap{max-width:1000px;margin:0 auto}
+    .card{background:white;border-radius:14px;padding:18px;box-shadow:0 12px 30px rgba(20,40,80,0.06)}
+    .top{display:flex;gap:20px;align-items:center}
+    .thumb{width:360px;height:220px;border-radius:10px;background-size:cover;background-position:center}
+    .meta{color:var(--muted)}
+    .actions{display:flex;gap:10px;margin-top:12px}
+    .btn{padding:10px 14px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent),#65e3b4);color:white;cursor:pointer}
+    .btn[disabled]{opacity:0.5;cursor:not-allowed}
+    .outline{background:transparent;border:1px solid rgba(10,40,120,0.08);color:var(--accent)}
+    .section{margin-top:18px}
+    .msg{color:red;margin-top:12px}
+    /* Navbar */
+    header {
+      background: linear-gradient(90deg, #0052D4, #65C7F7, #9CECFB);
+      padding: 15px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgb(104, 101, 101);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+nav a, .dropbtn {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+nav a:hover, .dropbtn:hover {
+    color: #007bff;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    padding: 10px 15px;
+}
+
+/* Dropdown Content Box */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Reveal On Hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Dropdown Links */
+.dropdown-content a {
+    display: block;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+}
+
+.dropdown-content a:hover {
+    background: #f2f6ff;
+    color: #007bff;
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+@keyframes float1 {
+    0% { transform:translateY(0); }
+    50% { transform:translateY(-20px); }
+    100% { transform:translateY(0); }
+}
+
+@keyframes float2 {
+    0% { transform:translateY(0); }
+    50% { transform:translateY(-25px); }
+    100% { transform:translateY(0); }
+}
+
+@keyframes float3 {
+    0% { transform:translateY(0); }
+    50% { transform:translateY(-18px); }
+    100% { transform:translateY(0); }
+}
+
+@keyframes floatMain {
+    0% {transform:translateY(0);}
+    50% {transform:translateY(-15px);}
+    100% {transform:translateY(0);}
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>EduExam+</h1>
+    <nav>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/about}">About</a>
+        <!-- Practice Dropdown -->
+        <div class="dropdown">
+            <button class="dropbtn"><a th:href="@{/practice}">Practice</a> </button>
+            <div class="dropdown-content">
+                <a th:href="@{/practice}">Tutorials</a>
+                <a th:href="@{/practice}">Articles</a>
+                <a th:href="@{/practice}">Coding Problems</a>
+                <a th:href="@{/practice}">Quizzes</a>
+                <a th:href="@{/practice}">Learning Videos</a>
+                <a th:href="@{/practice}">Cheat Sheets</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" style="background: none;
+    border: none;
+    font-size: 16px;
+    padding: 5px 5px;"><a th:href="@{/courses}">Courses</a> </button>
+            <div class="dropdown-content" style=" 
+    padding: 12px 25px;
+    /* text-decoration: none; */
+    color: #333;
+    font-size: 15px;">
+                <a th:href="@{/courses}">Web & Software Development</a><br>
+                <a th:href="@{/courses}">Data & AI</a><br>
+                <a th:href="@{/courses}">Programming Languages & CS Fundamentals</a><br>
+                <a th:href="@{/courses}">DevOps / Cloud / Infra</a>
+                <a th:href="@{/courses}">Cybersecurity & QA</a>
+                <a th:href="@{/courses}">Tools / Productivity / Business Skills</a>
+            </div>
+        </div>
+        <a th:href="@{/login}">Login</a>
+        <a th:href="@{/register}">Register</a>
+        <a th:href="@{/profile}">Profile</a>
+    </nav>
+</header>
+  <div class="wrap">
+    <div class="card">
+      <div class="top">
+        <div class="thumb" th:style="'background-image:url(' + ${course.thumb} + ')'"></div>
+        <div>
+          <h1 th:text="${course.title}">Course Title</h1>
+          <div class="meta">
+            <span th:text="${course.category}">Category</span> •
+            <span th:text="${course.duration}">Duration</span> •
+            <span th:text="${course.level}">Level</span>
+          </div>
+          <div class="actions">
+            <!-- Enroll Button -->
+            <!-- <form th:action="@{'/course/enroll/' + ${course.id}}" method="post">
+              <button type="submit" class="btn" 
+                      th:disabled="${alreadyEnrolled}"> 
+                      <span th:text="${alreadyEnrolled} ? 'Already Enrolled' : 'Enroll Now - ₹' + ${course.price}">Enroll</span>
+              </button>
+            </form> -->
+            <form th:action="@{'/course/enroll/' + ${course.id}}" method="post">
+    <button type="submit" class="btn" th:disabled="${alreadyEnrolled}">
+        <span th:text="${alreadyEnrolled} ? 'Enroll Done' : 'Enroll Now - ₹' + ${course.price}"></span>
+    </button>
+</form>
+<div class="msg" th:if="${msg}" th:text="${msg}"></div>
+
+            <button class="btn outline" onclick="share()">Share</button>
+          </div>
+
+          <!-- Message -->
+          <div class="msg" th:if="${msg}" th:text="${msg}"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>About this course</h3>
+        <p th:text="${course.description}">Detailed description goes here.</p>
+      </div>
+
+      <div class="section">
+        <h3>Syllabus & Highlights</h3>
+        <!-- <ul>
+          <li th:each="s : ${#strings.arrayList('Project 1','Project 2','Quiz 1')}" th:text="${s}">Module</li>
+        </ul> -->
+        <ul>
+  <li th:each="s : ${syllabus}" th:text="${s}">Module</li>
+</ul>
+
+      </div>
+
+      <div class="section">
+        <h3>Instructor</h3>
+        <p class="meta">Tanuja More — Senior Instructor</p>
+      </div>
+    </div>
+  </div>
+
+<script>
+function share(){ 
+  navigator.share ? navigator.share({title:document.title,url:location.href}) : alert('Share this URL: ' + location.href); 
+}
+</script>
+</body>
+</html>

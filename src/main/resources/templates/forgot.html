@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Forgot Password - EduExam</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* Background image */
+        background: url('https://images.unsplash.com/photo-1612832021082-cdfb5a2f05e2?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+    }
+
+    .glass-card {
+        width: 340px;
+        padding: 30px 25px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        text-align: center;
+        color: black;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(31, 38, 135, 0.5);
+    }
+
+    .glass-card h2 {
+        margin-bottom: 15px;
+        font-size: 24px;
+        color: black;
+    }
+
+    .glass-card p {
+        margin-bottom: 15px;
+        font-size: 14px;
+        color: black;
+    }
+
+    .glass-card input {
+        width: 90%;
+        padding: 12px;
+        margin: 12px 0;
+        border-radius: 10px;
+        border: 1px solid rgba(0,0,0,0.3);
+        outline: none;
+        background: rgba(255, 255, 255, 0.7);
+        color: black;
+        font-size: 14px;
+        transition: background 0.3s ease, border 0.3s ease;
+    }
+
+    .glass-card input:focus {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #000000aa;
+    }
+
+    .glass-card button {
+        width: 95%;
+        padding: 12px;
+        margin-top: 15px;
+        border: none;
+        border-radius: 10px;
+        background: green; /* Button green */
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .glass-card button:hover {
+        background: darkgreen;
+    }
+
+    .glass-card a {
+        display: block;
+        margin-top: 12px;
+        color: black; /* Link black */
+        text-decoration: none;
+        font-size: 13px;
+        transition: color 0.3s ease;
+    }
+
+    .glass-card a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+<div class="glass-card">
+    <h2>Forgot Password?</h2>
+    <p>Enter your registered email to reset password.</p>
+    <form th:action="@{/forgot}" method="post">
+        <input type="email" name="email" placeholder="Email" required>
+        <button type="submit">Send Reset Link</button>
+    </form>
+    <a th:href="@{/login}">Back to Login</a>
+</div>
+</body>
+</html>

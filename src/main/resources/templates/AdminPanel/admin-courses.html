@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin | All Courses</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6fa;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            color: #333;
+        }
+
+        /* GRID */
+        .course-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 10px;
+        }
+
+        /* CARD */
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .thumb-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .course-title {
+            font-size: 20px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .course-info {
+            font-size: 15px;
+            margin: 4px 0;
+            color: #444;
+        }
+
+        /* BUTTONS */
+        .btn-container {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: white;
+        }
+
+        .edit-btn {
+            background: #0984e3;
+        }
+
+        .delete-btn {
+            background: #d63031;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>All Courses (Admin View)</h2>
+
+<div class="course-container">
+    <div th:each="c : ${courses}" class="card">
+
+        <!-- Course Thumbnail -->
+        <img class="thumb-img" th:src="${c.thumb}" alt="Course Image">
+
+        <!-- Title -->
+        <p class="course-title" th:text="${c.title}"></p>
+
+        <!-- Category -->
+        <p class="course-info">
+            Category: <span th:text="${c.category}"></span>
+        </p>
+
+        <!-- Duration -->
+        <p class="course-info">
+            Duration: <span th:text="${c.duration}"></span>
+        </p>
+
+        <!-- Price -->
+        <p class="course-info">
+            Price: ₹<span th:text="${c.price}"></span>
+        </p>
+
+        <!-- BUTTONS -->
+        <div class="btn-container">
+            <a th:href="@{'/admin/course/edit/' + ${c.id}}">
+                <button class="btn edit-btn">Edit</button>
+            </a>
+
+            <a th:href="@{'/admin/course/delete/' + ${c.id}}">
+                <button class="btn delete-btn">Delete</button>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Exam Prep & Study Tips — Smart Student Guide</title>
+  <meta name="description" content="Pomodoro, memory hacks, time management and exam stress strategies for students." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent1:linear-gradient(90deg,#7c5cff,#4ecdc4); --radius:14px; color-scheme:dark; color:#e6eef8; font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;padding:48px 20px;background:radial-gradient(900px 500px at 10% 10%, rgba(124,92,255,0.08), transparent), linear-gradient(180deg,#071021 0%, #08101a 100%);display:flex;justify-content:center}
+    .wrap{width:100%;max-width:1100px}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:60px;height:60px;border-radius:12px;background:var(--accent1);display:flex;align-items:center;justify-content:center;color:#021;font-weight:800;box-shadow:0 10px 30px rgba(20,20,60,.5)}
+    h1{margin:0;font-size:20px}
+    .lead{color:var(--muted);font-size:13px;margin-top:4px}
+
+    .marquee{background:linear-gradient(180deg, rgba(124,92,255,0.06), rgba(78,205,196,0.04));padding:12px;border-radius:12px;margin-bottom:18px;overflow:hidden}
+    .marquee .m{display:inline-block;white-space:nowrap;padding-right:40px;font-weight:700;color:#cfeef0}
+
+    .grid{display:grid;grid-template-columns:2fr 360px;gap:18px}
+    .main{display:flex;flex-direction:column;gap:16px}
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);transition:transform .18s ease}
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2,6,23,0.6)}
+    .card h3{margin:0 0 8px 0}
+    .meta{color:var(--muted);font-size:13px;margin-bottom:10px}
+    .excerpt{color:#d6e6f5;font-size:14px;line-height:1.45}
+    .read{display:inline-block;margin-top:12px;padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;font-weight:600;cursor:pointer}
+
+    .sidebar{position:sticky;top:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:12px;height:max-content;border:1px solid rgba(255,255,255,0.03)}
+    .timer{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+    .timer button{padding:8px 12px;border-radius:8px;border:none;background:var(--accent1);color:#021;font-weight:700;cursor:pointer}
+    .list{margin-top:10px;color:var(--muted);font-size:14px}
+
+    footer{margin-top:20px;color:var(--muted);font-size:13px;text-align:center}
+
+    @media(max-width:980px){.grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">EX</div>
+        <div>
+          <h1>Exam Prep & Study Tips</h1>
+          <div class="lead">Smart techniques, memory hacks and stress-busting strategies for students</div>
+        </div>
+      </div>
+      <div>
+        <button style="padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit;cursor:pointer">Resources</button>
+        <button style="padding:10px 14px;border-radius:12px;border:none;background:var(--accent1);color:#021;margin-left:8px;cursor:pointer">Start Studying</button>
+      </div>
+    </header>
+
+    <div class="marquee" aria-hidden>
+      <div class="m" id="marq">🔥 Pomodoro tip: 25/5 focus beats marathon studying • Use spaced repetition for long-term memory • Quick breathwork reduces exam anxiety • Make summary notes for every chapter • Practice past papers weekly</div>
+    </div>
+
+    <div class="grid">
+      <main class="main">
+        <h2 style="margin:0">Key Articles</h2>
+
+        <section class="cards" id="cards">
+
+          <article class="card" data-title="Best Study Technique: Pomodoro Method">
+            <h3>Best Study Technique: Pomodoro Method</h3>
+            <div class="meta">Study Hacks • 5 min read</div>
+            <p class="excerpt">Short cycles (25/5) to boost focus and avoid burnout — plus how to adapt Pomodoro for deep study sessions.</p>
+            <button class="read" onclick="openArticle(this)">Read →</button>
+          </article>
+
+          <article class="card" data-title="How to Avoid Exam Stress (Scientifically Proven Tips)">
+            <h3>How to Avoid Exam Stress (Scientifically Proven Tips)</h3>
+            <div class="meta">Wellness • 6 min read</div>
+            <p class="excerpt">Evidence-based strategies: sleep hygiene, exercise, breathing techniques, and planning to reduce anxiety.</p>
+            <button class="read" onclick="openArticle(this)">Read →</button>
+          </article>
+
+          <article class="card" data-title="10 Smart Ways to Remember Anything">
+            <h3>10 Smart Ways to Remember Anything</h3>
+            <div class="meta">Memory • 6 min read</div>
+            <p class="excerpt">Mnemonics, chunking, spaced repetition, visualization and more memory tools explained with examples.</p>
+            <button class="read" onclick="openArticle(this)">Read →</button>
+          </article>
+
+          <article class="card" data-title="Time Management Tips for Students">
+            <h3>Time Management Tips for Students</h3>
+            <div class="meta">Productivity • 5 min read</div>
+            <p class="excerpt">Prioritization frameworks, weekly planning, calendar hacks and how to avoid procrastination effectively.</p>
+            <button class="read" onclick="openArticle(this)">Read →</button>
+          </article>
+
+          <article class="card" data-title="How to Make Effective Notes">
+            <h3>How to Make Effective Notes</h3>
+            <div class="meta">Study Skills • 6 min read</div>
+            <p class="excerpt">Note-taking templates, active summarization, Cornell method and digital note systems that actually help revision.</p>
+            <button class="read" onclick="openArticle(this)">Read →</button>
+          </article>
+
+        </section>
+
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <button style="padding:10px 14px;border-radius:10px;border:none;background:var(--accent1);color:#021;cursor:pointer" onclick="alert('Generate full article drafts — demo')">Generate Full Articles</button>
+          <button style="padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit;cursor:pointer" onclick="filterCards('memory')">Quick Memory Tips</button>
+        </div>
+
+        <footer>Made for students • Practical, evidence-based study guides — © EduExam+</footer>
+      </main>
+
+      <aside class="sidebar">
+        <div class="timer">
+          <div>
+            <div style="font-size:13px;color:var(--muted)">Pomodoro Timer</div>
+            <div id="time" style="font-size:20px;font-weight:700">25:00</div>
+          </div>
+          <div>
+            <button onclick="startTimer()">Start</button>
+            <button onclick="resetTimer()" style="margin-left:6px;padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit">Reset</button>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <strong>Quick Checklist</strong>
+          <ul class="list">
+            <li>Set clear goals for each session</li>
+            <li>Practice past papers under exam conditions</li>
+            <li>Use active recall, not passive reading</li>
+            <li>Sleep well before exam day</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:12px">
+          <strong>Resources</strong>
+          <div class="list" style="color:var(--muted);margin-top:6px">• Spaced repetition apps • Mock test PDFs • Printable weekly planner</div>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+
+  <script>
+    // marquee loop
+    (function(){
+      const el = document.getElementById('marq');
+      el.innerHTML = el.innerHTML + ' ' + el.innerHTML;
+      let t = 0;
+      function step(){ t -= 1; if(Math.abs(t) > el.scrollWidth/2) t = 0; el.style.transform = 'translateX('+t+'px)'; requestAnimationFrame(step);} 
+      step();
+    })();
+
+    // simple pomodoro timer
+    let timerInterval, total = 25*60;
+    function format(s){ const m = Math.floor(s/60); const r = s%60; return String(m).padStart(2,'0')+':'+String(r).padStart(2,'0'); }
+    document.getElementById('time').innerText = format(total);
+    function startTimer(){ if(timerInterval) return; timerInterval = setInterval(()=>{ if(total<=0){ clearInterval(timerInterval); timerInterval=null; alert('Pomodoro complete! Take a 5 min break.'); total = 25*60; document.getElementById('time').innerText = format(total); return;} total--; document.getElementById('time').innerText = format(total); },1000); }
+    function resetTimer(){ clearInterval(timerInterval); timerInterval=null; total=25*60; document.getElementById('time').innerText = format(total); }
+
+    function openArticle(btn){
+      const card = btn.closest('.card');
+      const title = card.querySelector('h3').innerText;
+      const excerpt = card.querySelector('.excerpt').innerText;
+      const modal = document.createElement('div');
+      modal.style = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:9999';
+      modal.innerHTML = `\n        <article style="width:90%;max-width:820px;background:linear-gradient(180deg, rgba(10,14,20,0.98), rgba(8,12,18,0.98));padding:22px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)">\n          <h2 style=\"margin-top:0\">${title}</h2>\n          <p style=\"color:var(--muted)\">${excerpt}</p>\n          <div style=\"margin-top:18px;display:flex;gap:10px\">\n            <button style=\"padding:10px 14px;border-radius:10px;border:none;background:var(--accent1);color:#021;font-weight:700\" onclick=\"alert('Open full article — demo only')\">Read Full</button>\n            <button onclick=\"document.body.removeChild(this.closest('div'))\" style=\"padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit\">Close</button>\n          </div>\n        </article>`;
+      document.body.appendChild(modal);
+    }
+
+    function filterCards(q){
+      q = q || '';
+      document.querySelectorAll('#cards .card').forEach(c=>{ const t=c.getAttribute('data-title').toLowerCase(); c.style.display = (!q || t.includes(q.toLowerCase()))? 'block':'none'; })
+    }
+  </script>
+</body>
+</html>

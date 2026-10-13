@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Edit Profile</title>
+
+<style>
+    body {
+        display:flex; justify-content:center; align-items:center;
+        height:100vh; font-family:sans-serif; background:#f0f2f5;
+    }
+    .form-box {
+        background:white; padding:25px; border-radius:15px;
+        width:430px; box-shadow:0 6px 20px rgba(0,0,0,0.15);
+    }
+    .form-box input, .form-box textarea {
+        width:100%; padding:8px; margin:5px 0;
+        border-radius:5px; border:1px solid #ccc;
+    }
+    .form-box button {
+        margin-top:10px; padding:10px 16px; border:none;
+        border-radius:5px; cursor:pointer; color:white;
+    }
+    .update-btn { background:#28a745; width:100%; }
+
+    .profile-img {
+        width:120px; height:120px; border-radius:50%;
+        object-fit:cover; display:block; margin:10px auto;
+        border:3px solid #ddd;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="form-box">
+    <h2>Edit Profile</h2>
+
+    <!-- Form START -->
+    <form th:action="@{/edit-profile}" method="post" enctype="multipart/form-data">
+
+        <!-- Hidden ID -->
+        <input type="hidden" name="id" th:value="${user.id}">
+
+        <!-- Profile Photo Preview -->
+         <!-- SmartOnlineExamPortal/src/main/resources/static/images/tanu pass.jpg -->
+        <!-- <img class="profile-img"
+             th:src="${user.photo != null} ? '/uploads/' + ${user.photo} : '/images/default.png'"
+             alt="Profile Photo"> -->
+             <!-- <img th:src="${user.photo} != null 
+             ? @{'/uploads/' + ${user.photo}} 
+             : @{'/images/default.png'}"
+     style="width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid #ddd;"> -->
+
+<!-- <img th:if="${user.photo}" 
+     th:src="@{'/uploads/' + ${user.photo}}" 
+     style="width:150px; height:150px; border-radius:50%; object-fit:cover;"> -->
+     <img th:if="${user.photo != null}"
+     th:src="@{/uploads/{img}(img=${user.photo})}"
+     class="profile-img">
+
+<img th:if="${user.photo == null}"
+     src="/images/default.png"
+     class="profile-img">
+
+
+        <!-- All Inputs -->
+        <input type="text" name="name" th:value="${user.name}" placeholder="Full Name" required>
+
+        <input type="number" name="age" th:value="${user.age}" placeholder="Age">
+
+        <input type="text" name="qualification" th:value="${user.qualification}" placeholder="Qualification">
+
+        <input type="text" name="city" th:value="${user.city}" placeholder="City">
+
+        <input type="text" name="country" th:value="${user.country}" placeholder="Country">
+
+        <textarea name="about" th:text="${user.about}" placeholder="About"></textarea>
+
+        <!-- Upload new photo -->
+        <label><b>Change Profile Photo:</b></label>
+        <input type="file" name="photoFile" accept="image/*">
+
+        <button type="submit" class="update-btn">Update Profile</button>
+
+    </form>
+    <!-- Form END -->
+</div>
+
+</body>
+</html>

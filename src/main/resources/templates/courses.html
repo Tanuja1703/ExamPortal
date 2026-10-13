@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+            background: #eef1f5;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .card {
+            width: 260px;
+            background: white;
+            padding: 15px;
+            margin: 12px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: .2s;
+        }
+        .card:hover {
+            transform: scale(1.03);
+        }
+        img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            background: #0A66C2;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+        /* Navbar */
+    header {
+      background: linear-gradient(90deg, #0052D4, #65C7F7, #9CECFB);
+      padding: 15px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgb(104, 101, 101);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+nav a, .dropbtn {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+nav a:hover, .dropbtn:hover {
+    color: #007bff;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    padding: 10px 15px;
+}
+
+/* Dropdown Content Box */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Reveal On Hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Dropdown Links */
+.dropdown-content a {
+    display: block;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+}
+
+.dropdown-content a:hover {
+    background: #f2f6ff;
+    color: #007bff;
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+@keyframes float1 {
+    0% { transform:translateY(0); }
+    50% { transform:translateY(-20px); }
+    100% { transform:translateY(0); }
+}
+
+@keyframes float2 {
+    0% { transform:translateY(0); }
+    50% { transform:translateY(-25px); }
+    100% { transform:translateY(0); }
+}
+
+@keyframes float3 {
+    0% { transform:translateY(0); }
+    50% { transform:translateY(-18px); }
+    100% { transform:translateY(0); }
+}
+
+@keyframes floatMain {
+    0% {transform:translateY(0);}
+    50% {transform:translateY(-15px);}
+    100% {transform:translateY(0);}
+}
+
+    </style>
+</head>
+
+<body>
+    <header>
+    <h1>EduExam+</h1>
+    <nav>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/about}">About</a>
+        <!-- Practice Dropdown -->
+        <div class="dropdown">
+            <button class="dropbtn"><a th:href="@{/practice}">Practice</a> </button>
+            <div class="dropdown-content">
+                <a th:href="@{/practice}">Tutorials</a>
+                <a th:href="@{/practice}">Articles</a>
+                <a th:href="@{/practice}">Coding Problems</a>
+                <a th:href="@{/practice}">Quizzes</a>
+                <a th:href="@{/practice}">Learning Videos</a>
+                <a th:href="@{/practice}">Cheat Sheets</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" style="background: none;
+    border: none;
+    font-size: 16px;
+    padding: 5px 5px;"><a th:href="@{/courses}">Courses</a> </button>
+            <div class="dropdown-content" style=" 
+    padding: 12px 25px;
+    /* text-decoration: none; */
+    color: #333;
+    font-size: 15px;">
+                <a th:href="@{/courses}">Web & Software Development</a><br>
+                <a th:href="@{/courses}">Data & AI</a><br>
+                <a th:href="@{/courses}">Programming Languages & CS Fundamentals</a><br>
+                <a th:href="@{/courses}">DevOps / Cloud / Infra</a>
+                <a th:href="@{/courses}">Cybersecurity & QA</a>
+                <a th:href="@{/courses}">Tools / Productivity / Business Skills</a>
+            </div>
+        </div>
+        <!-- <div class="dropdown">
+            <button class="dropbtn">More </button>
+            <div class="dropdown-content">
+                <a th:href="@{/practice}">Blog</a>
+                <a th:href="@{/tutorials}">In News</a>
+            </div>
+        </div> -->
+        <a th:href="@{/login}">Login</a>
+        <a th:href="@{/register}">Register</a>
+        <a th:href="@{/profile}">Profile</a>
+    </nav>
+</header>
+
+<h2>Available Courses</h2>
+
+<div class="container">
+
+    <!-- Loop All Courses -->
+    <div th:each="c : ${courses}" class="card">
+
+        <img th:src="${c.thumb}" alt="Course Image">
+
+        <h3 th:text="${c.title}"></h3>
+
+        <p><b>Category:</b> <span th:text="${c.category}"></span></p>
+
+        <p><b>Duration:</b> <span th:text="${c.duration}"></span></p>
+
+        <p><b>Price:</b> ₹<span th:text="${c.price}"></span></p>
+
+        <!-- View Details Button -->
+        <a th:href="@{/course/details/{id}(id=${c.id})}" class="btn">
+            View Details
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

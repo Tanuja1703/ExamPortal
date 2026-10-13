@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Practice | EduExam+</title>
+
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: Poppins, sans-serif;
+    background: #f7f8fa;
+}
+
+/* 🔥 Top Banner */
+.top-banner {
+    background: linear-gradient(90deg, #eeebee, #f89a60);
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* 🔥 Page Header */
+.page-header {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.page-header h2 {
+    font-size: 34px;
+    font-weight: 700;
+}
+
+.page-header p {
+    color: #555;
+    font-size: 16px;
+    margin-top: -10px;
+}
+
+/* 🔥 Section Title */
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 60px;
+    align-items: center;
+}
+
+.section-title h3 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.highlight {
+    border-bottom: 3px solid #ff004c;
+    color: #ff004c;
+}
+
+.view-all {
+    text-decoration: none;
+    font-size: 16px;
+    color: #e80038;
+    font-weight: 600;
+}
+
+.view-all:hover {
+    text-decoration: underline;
+}
+
+/* 🔥 Cards Grid */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-gap: 25px;
+    padding: 0 60px 40px 60px;
+}
+
+/* 🔥 Card Design */
+.card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* 🔥 Card Image */
+.card-img {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* 🔥 Card Content */
+.card-content {
+    padding: 15px 20px;
+}
+
+.tag {
+    background: #ff004c;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.card-content h4 {
+    margin: 10px 0 5px;
+    font-size: 20px;
+}
+
+.card-content p {
+    color: #666;
+    font-size: 15px;
+}
+
+/* Navbar */
+    header {
+      background: linear-gradient(90deg, #0052D4, #65C7F7, #9CECFB);
+      padding: 15px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgb(104, 101, 101);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+nav a, .dropbtn {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+nav a:hover, .dropbtn:hover {
+    color: #007bff;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    padding: 10px 15px;
+}
+
+/* Dropdown Content Box */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Reveal On Hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Dropdown Links */
+.dropdown-content a {
+    display: block;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+}
+
+.dropdown-content a:hover {
+    background: #f2f6ff;
+    color: #007bff;
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+@keyframes float1 {
+    0% { transform:translateY(0); }
+    50% { transform:translateY(-20px); }
+    100% { transform:translateY(0); }
+}
+
+@keyframes float2 {
+    0% { transform:translateY(0); }
+    50% { transform:translateY(-25px); }
+    100% { transform:translateY(0); }
+}
+
+@keyframes float3 {
+    0% { transform:translateY(0); }
+    50% { transform:translateY(-18px); }
+    100% { transform:translateY(0); }
+}
+
+@keyframes floatMain {
+    0% {transform:translateY(0);}
+    50% {transform:translateY(-15px);}
+    100% {transform:translateY(0);}
+}
+
+
+    </style>
+</head>
+<body>
+<header>
+    <h1>EduExam+</h1>
+    <nav>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/about}">About</a>
+        <!-- Practice Dropdown -->
+        <div class="dropdown">
+            <button class="dropbtn"><a th:href="@{/practice}">Practice</a> </button>
+            <div class="dropdown-content">
+                <a th:href="@{/practice}">Tutorials</a>
+                <a th:href="@{/practice}">Articles</a>
+                <a th:href="@{/practice}">Coding Problems</a>
+                <a th:href="@{/practice}">Quizzes</a>
+                <a th:href="@{/practice}">Learning Videos</a>
+                <a th:href="@{/practice}">Cheat Sheets</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" style="background: none;
+    border: none;
+    font-size: 16px;
+    padding: 5px 5px;"><a th:href="@{/courses}">Courses</a> </button>
+            <div class="dropdown-content" style=" 
+    padding: 12px 25px;
+    /* text-decoration: none; */
+    color: #333;
+    font-size: 15px;">
+                <a th:href="@{/courses}">Web & Software Development</a><br>
+                <a th:href="@{/courses}">Data & AI</a><br>
+                <a th:href="@{/courses}">Programming Languages & CS Fundamentals</a><br>
+                <a th:href="@{/courses}">DevOps / Cloud / Infra</a>
+                <a th:href="@{/courses}">Cybersecurity & QA</a>
+                <a th:href="@{/courses}">Tools / Productivity / Business Skills</a>
+            </div>
+        </div>
+        <!-- <div class="dropdown">
+            <button class="dropbtn">More </button>
+            <div class="dropdown-content">
+                <a th:href="@{/practice}">Blog</a>
+                <a th:href="@{/tutorials}">In News</a>
+            </div>
+        </div> -->
+        <a th:href="@{/login}">Login</a>
+        <a th:href="@{/register}">Register</a>
+        <a th:href="@{/profile}">Profile</a>
+    </nav>
+</header>
+<section class="top-banner">
+    <p>🚀 Sharpen Your Skills • Learn • Practice • Grow</p>
+</section>
+
+<section class="page-header">
+    <h2>Practice & Improve Your Skills</h2>
+    <p> Choose from tutorials, articles, quizzes, coding problems, and more! </p>
+</section>
+
+<section class="section-title">
+    <h3>Top Articles to <span class="highlight">Read</span></h3>
+    <!-- <a class="view-all" href="#">View All →</a> -->
+</section>
+
+<div class="cards-container">
+
+    <!-- CARD 1 -->
+    <div class="card">
+        <div class="card-img" th:style="'background-image: url(' + @{/images/plot/practiceC1.jpg} + ');'"></div>
+        <div class="card-content">
+            <span class="tag">Programming</span>
+            <h4>Programming & Development Articles</h4>
+            <p>Step-by-step easy guide for installing and using Matplotlib…<a class="view-all" th:href="@{/program}">View All →</a></p>
+        </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card">
+        <div class="card-img" th:style="'background-image: url(' + @{/images/plot/practiceC2.jpg} + ');'"></div>
+        <div class="card-content">
+            <span class="tag">Computer Science</span>
+            <h4>Computer Science Concepts</h4>
+            <p>Complete list of operating systems with examples and uses…<a class="view-all" th:href="@{/computer}">View All →</a></p>
+        </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card">
+        <div class="card-img" th:style="'background-image: url(' + @{/images/plot/practiceC3.jpg} + ');'"></div>
+        <div class="card-content">
+            <span class="tag">AI</span>
+            <h4>Data Science / AI Articles</h4>
+            <p>12 advanced Excel features you must know in 2025…<a class="view-all" th:href="@{/ai}">View All →</a></p>
+        </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="card">
+        <div class="card-img" th:style="'background-image: url(' + @{/images/plot/practiceC4.jpg} + ');'"></div>
+        <div class="card-content">
+            <span class="tag">Growth</span>
+            <h4>Career & Skill Growth Articles</h4>
+            <p>12 advanced Excel features you must know in 2025…<a class="view-all" th:href="@{/growth}">View All →</a></p>
+        </div>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="card">
+        <div class="card-img" 
+        th:style="'background-image: url(' + @{/images/plot/practiceC5.jpg} + ');'"></div>
+        <div class="card-content">
+            <span class="tag">Web</span>
+            <h4>Web Development Articles</h4>
+            <p>12 advanced Excel features you must know in 2025…<a class="view-all" th:href="@{/web}">View All →</a></p>
+        </div>
+    </div>
+
+    <!-- CARD 6 -->
+   <div class="card">    
+    <div class="card-img" 
+         th:style="'background-image: url(' + @{/images/plot/practiceC6.jpg} + ');'">
+    </div>
+
+    <div class="card-content">
+        <span class="tag">Tips</span>
+        <h4>Exam Preparation / Study Tips</h4>
+        <p>12 advanced Excel features you must know in 2025…<a class="view-all" th:href="@{/tips}">View All →</a></p>
+    </div>
+</div>
+
+</div>
+
+
+<!-- ⭐ IMPRESSIVE, SIMPLE & EFFECTIVE ARTICLE SECTION (READY TO ADD IN YOUR PAGE) -->
+<section style="padding:60px 80px; background:#f7faff; ">
+
+    <h2 style="font-size:32px; font-weight:800; color:#003855; text-align:center; margin-bottom:10px;">
+        ✨ Featured Insights For Your Learning Journey
+    </h2>
+    <p style="text-align:center; color:#666; font-size:17px; max-width:700px; margin:auto;">
+        Short, powerful & easy-to-read articles designed to boost your skills, confidence, and clarity while learning.
+    </p>
+
+    <div style="margin-top:50px; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px;">
+
+        <!-- Article 1 -->
+        <div style="background:white; padding:25px; border-radius:18px; box-shadow:0 8px 25px rgba(0,0,0,0.08); transition:.3s;">
+            <h3 style="font-size:22px; margin:0; color:#2c2c2c; font-weight:700;">💡 Why Practicing Daily Changes Everything</h3>
+            <p style="margin-top:12px; color:#555; line-height:26px;">
+                Your brain grows when you practice — literally. Consistency rewires your mind, builds confidence, and helps you absorb concepts
+                effortlessly. Even 30 minutes a day is more powerful than 3 hours once a week.
+            </p>
+            <p style="color:#003855; font-weight:600; margin-top:10px;">👉 Small steps daily = Big results in future.</p>
+        </div>
+
+        <!-- Article 2 -->
+        <div style="background:white; padding:25px; border-radius:18px; box-shadow:0 8px 25px rgba(0,0,0,0.08); transition:.3s;">
+            <h3 style="font-size:22px; margin:0; color:#2c2c2c; font-weight:700;">🚀 How to Stay Motivated While Learning</h3>
+            <p style="margin-top:12px; color:#555; line-height:26px;">
+                Motivation doesn’t come first — action does. Start with a tiny task: read one topic, solve one question, write one program. Once
+                you begin, your brain automatically creates momentum.
+            </p>
+            <p style="color:#003855; font-weight:600; margin-top:10px;">👉 Start small, stay steady, finish strong.</p>
+        </div>
+
+        <!-- Article 3 -->
+        <div style="background:white; padding:25px; border-radius:18px; box-shadow:0 8px 25px rgba(0,0,0,0.08); transition:.3s;">
+            <h3 style="font-size:22px; margin:0; color:#2c2c2c; font-weight:700;">🔥 The Secret to Becoming Really Good at Coding</h3>
+            <p style="margin-top:12px; color:#555; line-height:26px;">
+                Great coders aren’t born — they practice debugging, break problems into pieces, and learn from mistakes. Real progress happens 
+                when you try, fail, understand, and try again.
+            </p>
+            <p style="color:#003855; font-weight:600; margin-top:10px;">👉 Coding = Problem-solving + Patience + Practice.</p>
+        </div>
+
+        <!-- Article 4 -->
+        <div style="background:white; padding:25px; border-radius:18px; box-shadow:0 8px 25px rgba(0,0,0,0.08); transition:.3s;">
+            <h3 style="font-size:22px; margin:0; color:#2c2c2c; font-weight:700;">🌱 Why Learning Slowly is Actually Faster</h3>
+            <p style="margin-top:12px; color:#555; line-height:26px;">
+                Rushing creates confusion. Slow learning creates mastery. When you learn deeply instead of quickly, your foundation becomes 
+                unbeatable — and future topics become 10× easier.
+            </p>
+            <p style="color:#003855; font-weight:600; margin-top:10px;">👉 Deep understanding beats fast memorizing.</p>
+        </div>
+
+        <!-- Article 5 -->
+        <div style="background:white; padding:25px; border-radius:18px; box-shadow:0 8px 25px rgba(0,0,0,0.08); transition:.3s;">
+            <h3 style="font-size:22px; margin:0; color:#2c2c2c; font-weight:700;">🎯 How to Practice Smart, Not Hard</h3>
+            <p style="margin-top:12px; color:#555; line-height:26px;">
+                Don’t just read — apply. Don’t just watch videos — build something. Smart practice focuses on doing the exact thing you want to
+                get better at, not everything around it.
+            </p>
+            <p style="color:#003855; font-weight:600; margin-top:10px;">👉 Practice with purpose, not pressure.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<div style="
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:70px 80px;
+    /* background:linear-gradient(135deg, #fcf8ff, #fdbb86);
+    color:white; */
+    background: rgba(158, 217, 247, 0.65);
+backdrop-filter: blur(12px);
+color: #ff4f81;
+
+    position:relative;
+    overflow:hidden;
+    border-radius:0 0 40px 40px;
+">
+
+    <!-- Floating Shapes -->
+    <div style="
+        position:absolute; top:18%; left:8%;
+        width:140px; height:35px;
+        background:rgba(0,217,208,0.9);
+        border-radius:10px;
+        animation:float1 4s infinite ease-in-out;
+    "></div>
+
+    <div style="
+        position:absolute; bottom:20%; left:20%;
+        width:120px; height:30px;
+        background:rgba(179,112,255,0.8);
+        border-radius:10px;
+        animation:float2 5s infinite ease-in-out;
+    "></div>
+
+    <div style="
+        position:absolute; top:25%; right:12%;
+        width:130px; height:32px;
+        background:rgba(255,79,129,0.9);
+        border-radius:10px;
+        animation:float3 3.8s infinite ease-in-out;
+    "></div>
+
+    <!-- Glass Badge -->
+    <div style="
+        position:absolute; top:25px; left:40px;
+        padding:10px 20px;
+        background:rgba(184, 157, 245, 0.2);
+        backdrop-filter:blur(10px);
+        border:1px solid rgba(255,255,255,0.4);
+        border-radius:14px;
+        font-size:15px;
+        font-weight:600;
+        color:#003855;
+    ">
+        🚀 Practice Zone – Improve Your Skills
+    </div>
+
+    <!-- LEFT TEXT -->
+    <div style="width:50%;">
+
+        <h1 style="
+            font-size:45px; 
+            font-weight:800; 
+            line-height:54px; 
+            margin:0; 
+            color:#003855;
+        ">
+            Level Up Your  
+            <span style="color:#ff4f81;">Practice Journey</span>  
+            with Smart Learning
+        </h1>
+
+        <p style="
+            margin-top:20px;
+            font-size:18px;
+            line-height:28px;
+            color:#2c2c2c;
+            font-weight:500;
+        ">
+            Explore tutorials, articles, coding problems, quizzes and interactive learning
+            content — custom designed to boost your skills faster and smarter.
+        </p>
+
+        <button style="
+            background:#2c79ed;
+            border:none;
+            padding:15px 30px;
+            margin-top:30px;
+            font-size:18px;
+            color:white;
+            border-radius:12px;
+            cursor:pointer;
+            transition:0.3s;
+            font-weight:600;
+            box-shadow:0 8px 20px rgba(0,0,0,0.2);
+        "
+        onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 12px 25px rgba(0,0,0,0.3)'"
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.2)'">
+            Start Practicing →
+        </button>
+    </div>
+
+    <!-- RIGHT IMAGE -->
+    <div style="width:45%; text-align:right;">
+        <img src="/images/plot/practicepracticing.jpeg"
+        style="
+            width:560px;
+            border-radius:20px;
+            filter:drop-shadow(0 15px 35px rgba(0,0,0,0.45));
+            animation:floatMain 3.5s infinite ease-in-out;
+        ">
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

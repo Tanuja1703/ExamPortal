@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduExam+ | Smart Online Examination & Notes Portal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    header {
+      background: linear-gradient(90deg, #0052D4, #65C7F7, #9CECFB);
+      padding: 15px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    nav a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    nav a:hover {
+      color: #ffe082;
+      transform: scale(1.1);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 90vh;
+      background: linear-gradient(rgba(0,0,50,0.6), rgba(0,0,50,0.6)), 
+                  url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1500&q=80') 
+                  center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      text-align: center;
+      animation: fadeIn 2s ease-in;
+    }
+    .hero h2 {
+      font-size: 52px;
+      margin-bottom: 15px;
+      animation: slideDown 1.5s ease-out;
+    }
+    .hero p {
+      font-size: 22px;
+      margin-bottom: 30px;
+      animation: slideUp 1.5s ease-out;
+    }
+    .hero button {
+      padding: 14px 30px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(45deg, #ff9800, #ff5722);
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.4s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .hero button:hover {
+      transform: scale(1.1);
+      background: linear-gradient(45deg, #ff5722, #ff9800);
+    }
+
+    /* Features Section */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 60px;
+      background: #fff;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .card h3 {
+      margin-bottom: 15px;
+      color: #0052D4;
+      font-size: 22px;
+    }
+    .card p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #1c1c1c, #2c2c2c);
+      color: #ddd;
+      padding: 50px 20px 20px;
+      font-size: 14px;
+      margin-top: 50px;
+      position: relative;
+    }
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .footer-section h3, 
+    .footer-section h4 {
+      color: #fff;
+      margin-bottom: 15px;
+    }
+    .footer-section p {
+      line-height: 1.6;
+    }
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-section ul li {
+      margin-bottom: 8px;
+    }
+    .footer-section ul li a {
+      text-decoration: none;
+      color: #ddd;
+      transition: 0.3s;
+    }
+    .footer-section ul li a:hover {
+      color: #ff9800;
+      padding-left: 5px;
+    }
+    .social-icons a {
+      display: inline-block;
+      margin: 5px;
+      transition: transform 0.3s, filter 0.3s;
+    }
+    .social-icons a:hover {
+      transform: scale(1.3);
+      filter: brightness(1.3);
+    }
+    .footer-bottom {
+      border-top: 1px solid #444;
+      text-align: center;
+      padding-top: 15px;
+      margin-top: 30px;
+      font-size: 13px;
+      color: #aaa;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes slideDown {
+      from {transform: translateY(-50px); opacity: 0;}
+      to {transform: translateY(0); opacity: 1;}
+    }
+    @keyframes slideUp {
+      from {transform: translateY(50px); opacity: 0;}
+      to {transform: translateY(0); opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <h1>EduExam+</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Exams</a>
+      <a href="#">Notes</a>
+      <a href="#">Login</a>
+      <a href="#">Register</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Smart Learning, Smarter Exams</h2>
+    <p>One-stop solution for Online Exams & Digital Notes</p>
+    <button>Get Started</button>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="card">
+      <h3>📘 Online Notes</h3>
+      <p>Access subject-wise notes anytime, anywhere with ease.</p>
+    </div>
+    <div class="card">
+      <h3>📝 Online Exams</h3>
+      <p>Practice & take exams online with instant evaluation.</p>
+    </div>
+    <div class="card">
+      <h3>📊 Results</h3>
+      <p>Check your progress with auto-generated reports.</p>
+    </div>
+    <div class="card">
+      <h3>👤 Profile</h3>
+      <p>Personalized dashboard for your exams & notes.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <!-- About -->
+      <div class="footer-section">
+        <h3>EduExam+</h3>
+        <p>Smart Online Examination & Notes Portal – your one stop solution for learning & assessment.</p>
+      </div>
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Exams</a></li>
+          <li><a href="#">Notes</a></li>
+          <li><a href="#">Results</a></li>
+          <li><a href="#">Profile</a></li>
+        </ul>
+      </div>
+      <!-- Contact -->
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <p>Email: support@eduexam.com</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+      <!-- Social Links -->
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/facebook-new.png"/></a>
+          <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/twitter.png"/></a>
+          <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/linkedin.png"/></a>
+          <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/instagram-new.png"/></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 EduExam+ | Designed with ❤ for Smart Students</p>
+    </div>
+  </footer>
+</body>
+</html>
